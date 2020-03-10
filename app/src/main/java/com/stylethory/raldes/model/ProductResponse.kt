@@ -52,7 +52,7 @@ data class Price (
 
     @SerializedName("amount")
     @Expose
-    var amount: Int
+    var amount: Double
 )
 
 data class Designer (

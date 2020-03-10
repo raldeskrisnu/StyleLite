@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.View
 import android.widget.Toast
 import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.stylethory.raldes.R
 import com.stylethory.raldes.base.BaseFragment
 import com.stylethory.raldes.di.component.DaggerProductsComponent
@@ -20,10 +21,28 @@ class ProductsFragment: BaseFragment(), ProductsView  {
     var productsPresenter: ProductsPresenter? = null
         @Inject set
 
+    var page = 1
+    var isLoading = false
+
+    var productListAdapter: ProductsAdapter? = null
+    var layoutManager: GridLayoutManager? = null
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        productsPresenter!!.getProducts(1)
+        productListAdapter = ProductsAdapter()
+
+        layoutManager = GridLayoutManager(activity, 2)
+
+        uiview_products.layoutManager = layoutManager
+
+        uiview_products.addItemDecoration(GridItemDecoration(10, 2))
+
+        uiview_products.adapter = productListAdapter
+
+
+        productsPresenter!!.getProducts(page)
+
     }
 
     override fun getContentView(): Int {
@@ -31,16 +50,34 @@ class ProductsFragment: BaseFragment(), ProductsView  {
     }
 
     override fun getProduct(productsResponse: ProductResponse) {
-        uiview_products.layoutManager = GridLayoutManager(activity,2)
 
-        uiview_products.addItemDecoration(GridItemDecoration(10, 2))
+        productListAdapter!!.setProducts(productsResponse)
 
-        val productListAdapter = ProductsAdapter()
-        uiview_products.adapter = productListAdapter
-        productListAdapter.setProducts(productsResponse)
+        uiview_products.addOnScrollListener(object : RecyclerView.OnScrollListener() {
+            override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+
+                val visibleItemCount = layoutManager!!.childCount
+                val pastVisibleItem = layoutManager!!.findFirstCompletelyVisibleItemPosition()
+                val total = productListAdapter!!.itemCount
+
+                if (!isLoading) {
+
+                    if ((visibleItemCount + pastVisibleItem) >= total) {
+                        page++
+                        productsPresenter!!.getProducts(page)
+                    }
+
+                }
+
+                super.onScrolled(recyclerView, dx, dy)
+            }
+        })
+
+        isLoading = false
     }
 
     override fun showLoadingState() {
+        isLoading = true
         uiview_products.visibility = View.GONE
         layout_loading_state.visibility = View.VISIBLE
     }

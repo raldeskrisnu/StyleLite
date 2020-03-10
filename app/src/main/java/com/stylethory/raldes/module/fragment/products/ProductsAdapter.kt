@@ -12,27 +12,39 @@ import kotlinx.android.synthetic.main.list_item_grid_product.view.*
 
 class ProductsAdapter: RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
-    var productResponse: ProductResponse? = null
+    var productResponse = mutableListOf<Product>()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         return ProductListAdapter(
-            LayoutInflater.from(
-                parent.context
-            ).inflate(R.layout.list_item_grid_product, parent, false)
+            LayoutInflater.from(parent.context).inflate(R.layout.list_item_grid_product, parent, false)
         )
     }
 
-    override fun getItemCount(): Int = productResponse!!.product.size
+    override fun getItemCount(): Int = productResponse!!.size
 
     override fun onBindViewHolder(viewHolder: RecyclerView.ViewHolder, position: Int) {
         val movieViewHolder = viewHolder as ProductListAdapter
-        movieViewHolder.bindView(productResponse!!.product[position])
+        movieViewHolder.bindView(productResponse!![position])
     }
 
-    fun setProducts(listOfMovies: ProductResponse) {
-        this.productResponse = listOfMovies
+    fun setProducts(productRes: ProductResponse) {
+
+        productResponse!!.addAll(productRes.product)
         notifyDataSetChanged()
     }
+
+    fun updateProducts(productRes: ProductResponse) {
+        productResponse!!.addAll(productRes.product)
+
+        notifyItemInserted(itemCount)
+    }
+
+//    fun removeItem(){
+//        if(productResponse!!.isNotEmpty()) {
+//            productResponse!!.clear()
+//        }
+//        notifyDataSetChanged()
+//    }
 }
 
 class ProductListAdapter(itemView: View) : RecyclerView.ViewHolder(itemView) {
