@@ -18,14 +18,14 @@ class ColorsPresenter @Inject constructor() : BasePresenter<ColorsView>() {
     var styleTheoryLiteService: StyleTheoryLiteService? = null
         @Inject set
 
-    fun getColors(pageNumber: Int) {
+    fun getColors() {
         DisposableUtils.dispose(disposable);
         view.showLoadingState()
 
-        disposable = styleTheoryLiteService!!.getColors(10,pageNumber).subscribeOn(Schedulers.io())
+        disposable = styleTheoryLiteService!!.getColors().subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe({ it ->
-                view.getColors()
+                view.getColors(it)
                 view.hideLoadingState()
             }, { error ->
                 view.hideLoadingState()

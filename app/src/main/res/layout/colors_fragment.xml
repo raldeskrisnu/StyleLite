@@ -5,9 +5,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <include
+        android:id="@+id/layout_loading_states"
+        android:visibility="gone"
+        layout="@layout/component_shimmer_loading_state"/>
 
-    <TextView
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/uiview_colors_recylerview"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="colors"/>
+        android:layout_height="wrap_content"/>
+
 </LinearLayout>

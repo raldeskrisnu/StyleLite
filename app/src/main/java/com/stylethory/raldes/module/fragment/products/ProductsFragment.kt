@@ -35,9 +35,9 @@ class ProductsFragment: BaseFragment(), ProductsView  {
 
         uiview_products.addItemDecoration(GridItemDecoration(10, 2))
 
-        val movieListAdapter = ProductsAdapter()
-        uiview_products.adapter = movieListAdapter
-        movieListAdapter.setProducts(productsResponse)
+        val productListAdapter = ProductsAdapter()
+        uiview_products.adapter = productListAdapter
+        productListAdapter.setProducts(productsResponse)
     }
 
     override fun showLoadingState() {

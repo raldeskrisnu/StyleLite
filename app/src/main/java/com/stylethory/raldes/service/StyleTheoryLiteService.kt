@@ -12,5 +12,5 @@ interface StyleTheoryLiteService {
     fun getProducts(@Query("per_page") perPage:Int, @Query("page_number") pageNumber:Int): Observable<ProductResponse>
 
     @GET("/v1/colors")
-    fun getColors(@Query("per_page") perPage:Int, @Query("page_number") pageNumber:Int): Observable<ColorsResponse>
+    fun getColors(): Observable<ColorsResponse>
 }

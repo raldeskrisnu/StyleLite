@@ -5,9 +5,9 @@ import com.google.gson.annotations.SerializedName
 
 data class ColorsResponse(
 
-    @SerializedName("products")
+    @SerializedName("colors")
     @Expose
-    var product : List<ColorsList>
+    var color : List<ColorsList>
 )
 
 data class ColorsList(

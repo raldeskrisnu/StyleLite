@@ -49,6 +49,8 @@ dependencies {
     //picasso
     implementation 'com.squareup.picasso:picasso:2.71828'
 
+    implementation 'de.hdodenhof:circleimageview:3.0.1'
+
     //dagger2
     implementation 'com.google.dagger:dagger:2.+'
     kapt 'com.google.dagger:dagger-compiler:2.+'

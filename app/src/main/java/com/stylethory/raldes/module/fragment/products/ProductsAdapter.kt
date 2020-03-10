@@ -15,7 +15,7 @@ class ProductsAdapter: RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     var productResponse: ProductResponse? = null
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
-        return MovieListViewHolder(
+        return ProductListAdapter(
             LayoutInflater.from(
                 parent.context
             ).inflate(R.layout.list_item_grid_product, parent, false)
@@ -25,7 +25,7 @@ class ProductsAdapter: RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     override fun getItemCount(): Int = productResponse!!.product.size
 
     override fun onBindViewHolder(viewHolder: RecyclerView.ViewHolder, position: Int) {
-        val movieViewHolder = viewHolder as MovieListViewHolder
+        val movieViewHolder = viewHolder as ProductListAdapter
         movieViewHolder.bindView(productResponse!!.product[position])
     }
 
@@ -35,7 +35,7 @@ class ProductsAdapter: RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     }
 }
 
-class MovieListViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+class ProductListAdapter(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
     fun bindView(product: Product) {
         itemView.uiview_textview_title.text = product.designer[0].name
