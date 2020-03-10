@@ -1,30 +1,30 @@
 package com.stylethory.raldes.adapter
 
+
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
-import com.stylethory.raldes.module.fragment.color.ColorsFragment
-import com.stylethory.raldes.module.fragment.products.ProductsFragment
 
 class StyleTheoryLiteAdapter(fm: FragmentManager): FragmentPagerAdapter(fm) {
 
-    private val pages = listOf(
-        ProductsFragment(),
-        ColorsFragment()
-    )
+    private val fragmentList : MutableList<Fragment> = ArrayList()
+    private val titleList : MutableList<String> = ArrayList()
 
     override fun getItem(position: Int): Fragment {
-        return pages[position]
+        return fragmentList[position]
     }
 
     override fun getCount(): Int {
-        return pages.size
+        return fragmentList.size
+    }
+
+    fun addFragment(fragment: Fragment,title:String){
+        fragmentList.add(fragment)
+        titleList.add(title)
     }
 
     override fun getPageTitle(position: Int): CharSequence? {
-        return when(position){
-            0 -> "Products"
-            else -> "Colors"
-        }
+        return titleList[position]
     }
+
 }

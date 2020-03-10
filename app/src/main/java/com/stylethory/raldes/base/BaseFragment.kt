@@ -24,11 +24,11 @@ abstract class BaseFragment : Fragment() {
 
     }
 
-    protected fun resolveDaggerDependency() {}
+    protected open fun resolveDaggerDependency() {}
 
-    protected fun getApplicationComponent(): ApplicationComponent? {
-        return if (getActivity() != null)
-            (getActivity()!!.getApplication() as StyleTheoryApplication).applicationComponent()
+    protected fun applicationComponent(): ApplicationComponent? {
+        return if (activity != null)
+            (activity!!.application as StyleTheoryApplication).applicationComponent()
         else
             null
     }

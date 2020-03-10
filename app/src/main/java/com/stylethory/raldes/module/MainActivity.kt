@@ -4,10 +4,10 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
-import androidx.viewpager.widget.ViewPager
-import com.google.android.material.tabs.TabLayout
 import com.stylethory.raldes.R
 import com.stylethory.raldes.adapter.StyleTheoryLiteAdapter
+import com.stylethory.raldes.module.fragment.color.ColorsFragment
+import com.stylethory.raldes.module.fragment.products.ProductsFragment
 
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.content_main.*
@@ -19,7 +19,10 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         setSupportActionBar(toolbar)
 
-        uiview_viewpager.adapter = StyleTheoryLiteAdapter(supportFragmentManager)
+        val adapter = StyleTheoryLiteAdapter(supportFragmentManager)
+        adapter.addFragment(ProductsFragment() , " One ")
+        adapter.addFragment(ColorsFragment() , " Two ")
+        uiview_viewpager.adapter = adapter
         uiview_tablayout.setupWithViewPager(uiview_viewpager)
     }
 

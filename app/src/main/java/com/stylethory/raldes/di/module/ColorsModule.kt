@@ -1,20 +1,19 @@
 package com.stylethory.raldes.di.module
 
 import com.stylethory.raldes.di.scope.PerActivity
+import com.stylethory.raldes.module.view.ColorsView
 import com.stylethory.raldes.service.StyleTheoryLiteService
-import com.stylethory.raldes.module.view.ProductsView
 import dagger.Module
 import dagger.Provides
 import retrofit2.Retrofit
 
-
 @Module
-class ProductsModule(productView: ProductsView) {
+class ColorsModule(colorsView: ColorsView) {
 
-    var productsView1:ProductsView
+    var colorsView1: ColorsView
 
     init {
-        productsView1 = productView
+        colorsView1 = colorsView
     }
 
     @PerActivity
@@ -25,7 +24,7 @@ class ProductsModule(productView: ProductsView) {
 
     @PerActivity
     @Provides
-    fun provideView(): ProductsView {
-        return productsView1
+    fun provideView(): ColorsView {
+        return colorsView1
     }
 }
