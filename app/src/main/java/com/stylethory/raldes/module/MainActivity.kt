@@ -20,8 +20,8 @@ class MainActivity : AppCompatActivity() {
         setSupportActionBar(toolbar)
 
         val adapter = StyleTheoryLiteAdapter(supportFragmentManager)
-        adapter.addFragment(ProductsFragment() , " One ")
-        adapter.addFragment(ColorsFragment() , " Two ")
+        adapter.addFragment(ProductsFragment() , " Products ")
+        adapter.addFragment(ColorsFragment() , " Colors ")
         uiview_viewpager.adapter = adapter
         uiview_tablayout.setupWithViewPager(uiview_viewpager)
     }

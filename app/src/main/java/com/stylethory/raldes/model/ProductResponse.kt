@@ -29,11 +29,19 @@ data class Product (
 
     @SerializedName("price")
     @Expose
-    var price: List<Price>,
+    var price: Price,
 
     @SerializedName("details")
     @Expose
-    var details: String
+    var details: String,
+
+    @SerializedName("featured_image")
+    @Expose
+    var featureImage: String,
+
+    @SerializedName("designer")
+    @Expose
+    var designer: List<Designer>
 )
 
 data class Price (
@@ -45,4 +53,15 @@ data class Price (
     @SerializedName("amount")
     @Expose
     var amount: Int
+)
+
+data class Designer (
+
+    @SerializedName("id")
+    @Expose
+    var id: Int,
+
+    @SerializedName("name")
+    @Expose
+    var name: String
 )

@@ -5,9 +5,15 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <TextView
+    <include
+        android:id="@+id/layout_loading_state"
+        android:visibility="gone"
+        layout="@layout/component_shimmer_loading_state"/>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/uiview_products"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/test"
-        android:text="products"/>
+        android:layout_height="wrap_content"/>
+
+
 </LinearLayout>

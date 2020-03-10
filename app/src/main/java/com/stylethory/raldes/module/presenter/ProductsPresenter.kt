@@ -24,7 +24,7 @@ class ProductsPresenter @Inject constructor() : BasePresenter<ProductsView>() {
         disposable = styleTheoryLiteService!!.getProducts(10,pageNumber).subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe({ it ->
-                view.getProduct()
+                view.getProduct(it)
                 view.hideLoadingState()
             }, { error ->
                 view.hideLoadingState()
